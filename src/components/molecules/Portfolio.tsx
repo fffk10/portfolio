@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
+import tw from 'tailwind-styled-components'
 
 type Site = {
   imagePath: string,
@@ -11,46 +12,45 @@ type Site = {
 
 const Portfolio = () => {
   return (
-    <div className={styles.container}>
+    <Container>
       {portfolioList.map((site: Site) => {
         return (
-          <div key={site.pageTitle} className={styles.card}>
+          <Site key={site.pageTitle}>
             <Link href={site.url}>
-              <Image src={site.imagePath} alt={site.pageTitle} width={50} height={50} className={styles.pageIcon} />
+              <Image src={site.imagePath} alt={site.pageTitle} width={50} height={50} className="m-auto" />
               {site.pageTitle}
             </Link>
-            <p className={styles.description}>
+            <SiteDescription>
               {site.description}
-            </p>
-          </div>
+            </SiteDescription>
+          </Site>
         )
       })}
-    </div>
+    </Container>
   )
 }
 
-const styles = {
-  container: `
-    grid 
-    gap-4
-    px-10
-    lg:grid-cols-4
-    sm:grid-cols-3
-  `,
-  card: `
-    text-center
-  `,
-  pageIcon: `
-    m-auto
-  `,
-  description: `
-    text-sm
-    text-gray-400
-    whitespace-pre-wrap	
-  `
-}
+/** ====== Portfolio styled-components ====== */
+const Container = tw.div`
+  grid 
+  gap-4
+  px-10
+  lg:grid-cols-4
+  sm:grid-cols-3
+`
 
-// 作成したサイトリスト
+const Site = tw.div`
+  text-center
+`
+
+const SiteDescription = tw.p`
+  text-sm
+  text-gray-400
+  whitespace-pre-wrap	
+`
+/** ====== Portfolio styled-components ====== */
+
+// TODO 削除 作成したサイトリスト(dummy)
 const portfolioList: Site[] = [
   {
     imagePath: '/portfolio_image/image1.png',
