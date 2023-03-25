@@ -7,10 +7,12 @@ type Props = {
 }
 
 const Section = (props: Props) => {
+  const { title, children } = props
+
   return (
-    <div className='py-6 px-10 mb-28'>
-      <SectionTitle title={props.title} />
-      {props.children}
+    <div id={title} className='py-6 px-10 mb-28'>
+      <SectionTitle title={title} />
+      {children}
     </div>
   )
 }

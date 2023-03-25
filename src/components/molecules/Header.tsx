@@ -2,18 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
 import { BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
-import { Fragment, useEffect, useState } from 'react';
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
+import { useState } from 'react';
+import { Dialog } from '@headlessui/react';
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 // TODO commonのファイルを参照する
 const navMenu: string[] = [
@@ -25,16 +20,11 @@ const navMenu: string[] = [
 const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
 
-  /** humberger menu click handler */
-  const handleMobileMenuOpen = () => {
-    setOpenMobileMenu(!openMobileMenu)
-  }
-
   return (
-    <header className="bg-white">
+    <header className="bg-gray-100">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex">
-          <Link href="#" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <Image className="h-8 w-auto" src="/logo.png" alt={'logo'} width={70} height={60} />
           </Link>
         </div>
@@ -43,10 +33,10 @@ const Header = () => {
         <div className='w-full justify-end hidden lg:flex'>
           {
             navMenu.map(item => (
-              <Link key={item}
-                href={item}
+              <AnchorLink key={item}
+                href={`#${item}`}
                 className={'px-6 py-3 rounded-md min-h-full text-sm font-semibold leading-6 text-gray-900'}
-              > {item}</Link>
+              > {item}</AnchorLink>
             ))
           }
           <Link
@@ -73,9 +63,9 @@ const Header = () => {
       {/** open mobile menu */}
       <Dialog as="div" className="lg:hidden" open={openMobileMenu} onClose={setOpenMobileMenu}>
         <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-100 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href="#" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <Image className="h-8 w-auto" src="/logo.png" alt={'logo'} width={70} height={60} />
             </Link>
             <button
@@ -92,10 +82,11 @@ const Header = () => {
               <div className="space-y-2 py-6">
                 {
                   navMenu.map(item => (
-                    <Link key={item}
-                      href={item}
+                    <AnchorLink key={item}
+                      onClick={() => setOpenMobileMenu(false)}
+                      href={`#${item}`}
                       className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    > {item}</Link>
+                    > {item}</AnchorLink>
                   ))
                 }
               </div>
