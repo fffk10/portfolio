@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import * as React from 'react';
-import { BsInstagram, BsYoutube, BsTwitter } from 'react-icons/bs'
+import { BsInstagram, BsYoutube, BsTwitter, BsGithub } from 'react-icons/bs'
 
 const Footer = () => {
 
@@ -24,6 +24,12 @@ const Footer = () => {
           className='px-6 py-4 text-lg'
         >
           <BsTwitter />
+        </Link >
+        <Link
+          href='https://github.com/fffk10'
+          className='px-6 py-4 text-lg'
+        >
+          <BsGithub />
         </Link >
       </div>
       <p>&copy; Copyright 2023 fffk10, All rights reserved.</p>

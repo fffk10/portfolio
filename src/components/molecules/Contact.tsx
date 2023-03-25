@@ -20,8 +20,8 @@ const Contact = () => {
   }
 
   return (
-    <div className="w-full max-w-lg min-w-xs m-auto">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
             氏名
@@ -59,5 +59,35 @@ const Contact = () => {
     </div>
   )
 }
+
+const styles = {
+  container: `
+    w-full
+    max-w-lg
+    min-w-xs
+    m-auto
+  `,
+  form: `
+    bg-white
+    shadow-md
+    rounded
+    px-8
+    pt-6
+    pb-8
+    mb-4
+  `,
+  card: `
+  `,
+  blogTitle: `
+    break-words
+    whitespace-pre-wrap
+    max-w-lg
+  `,
+  blogViews: `
+    text-sm
+    text-gray-600
+  `
+}
+
 
 export default Contact

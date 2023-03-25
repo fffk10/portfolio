@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
-import { BsInstagram, BsTwitter, BsYoutube } from 'react-icons/bs'
+import { BsInstagram, BsTwitter, BsYoutube, BsGithub } from 'react-icons/bs'
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import {
@@ -13,7 +13,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 // TODO commonのファイルを参照する
 const navMenu: string[] = [
   'Portfolio',
-  'News',
+  'Blog',
   'Contact',
 ]
 
@@ -21,7 +21,7 @@ const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false)
 
   return (
-    <header className="bg-gray-100">
+    <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5">
@@ -40,10 +40,10 @@ const Header = () => {
             ))
           }
           <Link
-            href='https://www.instagram.com/fffk10/'
+            href='https://github.com/fffk10'
             className='px-6 py-4 text-lg text-gray-900'
           >
-            <BsInstagram />
+            <BsGithub />
           </Link >
         </div >
 
@@ -90,6 +90,8 @@ const Header = () => {
                   ))
                 }
               </div>
+
+              {/** sns link */}
               <div className="py-6 flex justify-end">
                 <Link
                   href='https://www.instagram.com/fffk10/'
@@ -108,6 +110,12 @@ const Header = () => {
                   className="block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   <BsTwitter />
+                </Link >
+                <Link
+                  href='https://github.com/fffk10'
+                  className="block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  <BsGithub />
                 </Link >
 
               </div>

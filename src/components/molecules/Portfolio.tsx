@@ -12,7 +12,7 @@ type Site = {
 const Portfolio = () => {
   return (
     <div className={styles.container}>
-      {portfolioList.map((site: any) => {
+      {portfolioList.map((site: Site) => {
         return (
           <div key={site.pageTitle} className={styles.card}>
             <Link href={site.url}>
@@ -25,7 +25,6 @@ const Portfolio = () => {
           </div>
         )
       })}
-
     </div>
   )
 }

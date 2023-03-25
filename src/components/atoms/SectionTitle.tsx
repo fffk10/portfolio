@@ -6,7 +6,7 @@ type Props = {
 
 const SectionTitle = (props: Props) => {
   return (
-    <h1 className='text-2xl text-center px-3 py-6'>{props.title}</h1>
+    <h1 className='text-2xl text-center px-3 py-6 font-serif'>{props.title}</h1>
   )
 }
 

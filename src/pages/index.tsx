@@ -3,7 +3,7 @@ import Section from '@/components/molecules/Section'
 import Portfolio from '@/components/molecules/Portfolio'
 import Contact from '@/components/molecules/Contact'
 import Layout from '@/components/layout/Layout'
-import News from '@/components/molecules/News'
+import Blog from '@/components/molecules/Blog'
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       <Layout>
         <>
           <Section title='Portfolio'><Portfolio /></Section>
-          <Section title='News'><News /></Section>
+          <Section title='Blog'><Blog /></Section>
           <Section title='Contact'><Contact /></Section>
         </>
       </Layout>
