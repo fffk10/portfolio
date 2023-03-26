@@ -5,7 +5,7 @@ import { BsInstagram, BsYoutube, BsTwitter, BsGithub } from 'react-icons/bs'
 const Footer = () => {
 
   return (
-    <footer className="p-4 w-full text-center text-gray-500 bg-slate-800">
+    <footer className="absolute bottom-0 p-4 w-full text-center text-gray-500 bg-slate-800">
       <div className='flex justify-center'>
         <Link
           href='https://www.instagram.com/fffk10/'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import BlogDataList from '../atoms/BlogDataList';
+import BlogDataList from './BlogDataList'
 import tw from "tailwind-styled-components"
+import Head from 'next/head'
 
 type Blog = {
   title: string,
@@ -19,9 +20,11 @@ const Blog = () => {
   const [blogList, setBlogList] = useState(dummyBlogList)  // TODO 動的にデータをとるように
 
   return (
-    <Container>
-      <BlogDataList dataList={blogList} />
-    </Container>
+    <>
+      <Container>
+        <BlogDataList dataList={blogList} />
+      </Container>
+    </>
   )
 }
 

@@ -35,7 +35,7 @@ const BlogDataList = ({ dataList }: BlogDataListProps) => {
         {dataList.slice((currentPager - 1) * CONTENT_LENGTH_ONE_PAGE, currentPager * CONTENT_LENGTH_ONE_PAGE).map((data: any) => {
           return (
             <div key={data.title}>
-              <Link href={data.title.replaceAll(" ", "")}> {/** TODO もう少し上手くやる必要あるけど暫定対処 */}
+              <Link href={`blog/${data.title.replaceAll(" ", "")}`}> {/** TODO もう少し上手くやる必要あるけど暫定対処 */}
                 <Title>{data.title}</Title>
                 <Views>{data.views.toLocaleString()} views</Views>
               </Link>

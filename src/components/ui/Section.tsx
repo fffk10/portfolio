@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import SectionTitle from '../atoms/SectionTitle'
+import SectionTitle from './SectionTitle'
 
 type Props = {
   title: string,
