@@ -1,13 +1,18 @@
-import { ReactElement } from 'react'
-import Head from 'next/head'
 import fs from 'fs'
-import tw from 'tailwind-styled-components'
-import matter from 'gray-matter'
+
+import { ReactElement } from 'react'
 import ReactMarkdown from 'react-markdown'
+
+import matter from 'gray-matter'
+import Head from 'next/head'
 import remarkGfm from 'remark-gfm'
+import tw from 'tailwind-styled-components'
+
+
+
+import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
 
 import styles from '@/styles/md.module.css'
-import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
 
 export const getStaticPaths = async () => {
   console.log('Start getStaticPaths.')

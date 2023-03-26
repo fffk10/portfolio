@@ -1,6 +1,7 @@
-import Header from "@/components/layouts/Header"
-import Footer from "@/components/layouts/Footer"
 import { ReactElement } from "react"
+
+import Footer from "@/components/layouts/Footer"
+import Header from "@/components/layouts/Header"
 
 type HomeLayoutProps = Required<{
   readonly children: ReactElement

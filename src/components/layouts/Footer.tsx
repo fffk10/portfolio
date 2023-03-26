@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import * as React from 'react';
+
+import Link from 'next/link';
 import { BsInstagram, BsYoutube, BsTwitter, BsGithub } from 'react-icons/bs'
 
 const Footer = () => {

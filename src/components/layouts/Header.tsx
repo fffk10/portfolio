@@ -1,14 +1,15 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
-import { BsInstagram, BsTwitter, BsYoutube, BsGithub } from 'react-icons/bs'
 import { Dialog } from '@headlessui/react';
 import {
   Bars3Icon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import Image from 'next/image';
+import Link from 'next/link';
+import { BsInstagram, BsTwitter, BsYoutube, BsGithub } from 'react-icons/bs'
+
 
 // TODO commonのファイルを参照する
 const navMenu: string[] = [

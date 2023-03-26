@@ -1,5 +1,7 @@
-import Footer from "@/components/layouts/Footer"
 import { ReactElement } from "react"
+
+import Footer from "@/components/layouts/Footer"
+
 import OtherHomeHeader from "./OtherHomeHeader"
 
 type OtherHomeLayoutProps = Required<{

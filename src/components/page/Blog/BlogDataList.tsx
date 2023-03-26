@@ -1,7 +1,9 @@
-import Link from 'next/link'
 import React, { useState } from 'react'
-import tw from 'tailwind-styled-components'
 import ReactPaginate from 'react-paginate'
+
+import Link from 'next/link'
+import tw from 'tailwind-styled-components'
+
 
 type BlogDataListProps = {
   dataList: any[]

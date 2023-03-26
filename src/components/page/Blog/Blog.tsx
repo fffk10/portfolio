@@ -1,7 +1,11 @@
+import fs from 'fs'
+
 import React, { useState } from 'react'
-import BlogDataList from './BlogDataList'
+
+import matter from 'gray-matter'
 import tw from "tailwind-styled-components"
-import Head from 'next/head'
+
+import BlogDataList from './BlogDataList'
 
 type Blog = {
   title: string,
@@ -9,12 +13,26 @@ type Blog = {
   content: string
 }
 
-const Container = tw.div`
-    w-full
-    max-w-lg
-    min-w-xs
-    m-auto
-`
+export const getStaticProps = (context: any) => {
+  console.log("Start getStaticProps.")
+
+  const id = context.params.id
+  const targetBlogName = fs.readdirSync('posts').find(post => post.match(`${id}.md`))
+  console.log('targetBlogName:', targetBlogName)
+
+  const targetBlog = fs.readFileSync(`posts/${targetBlogName}`, 'utf-8')
+  const { data, content } = matter(targetBlog)
+
+  console.log("content=" + content)
+
+  return {
+    props: {
+      data: data,
+      content: content
+    }
+  }
+}
+
 
 const Blog = () => {
   const [blogList, setBlogList] = useState(dummyBlogList)  // TODO 動的にデータをとるように
@@ -27,6 +45,17 @@ const Blog = () => {
     </>
   )
 }
+
+/** ====== Blog styled-components ====== */
+
+const Container = tw.div`
+    w-full
+    max-w-lg
+    min-w-xs
+    m-auto
+`
+/** ====== Blog styled-components ====== */
+
 
 // TODO 削除
 const dummyBlogList: Blog[] = [

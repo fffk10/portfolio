@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+
 import SectionTitle from './SectionTitle'
 
 type Props = {

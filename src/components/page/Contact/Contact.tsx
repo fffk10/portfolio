@@ -1,6 +1,8 @@
-import { SyntheticEvent, useState } from "react"
-import { useMail } from "@/hooks/useMail"
+import { SyntheticEvent } from "react"
+
 import tw from 'tailwind-styled-components'
+
+import { useMail } from "@/hooks/useMail"
 
 /** Contact form page */
 const Contact = () => {
