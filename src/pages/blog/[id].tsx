@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import Head from 'next/head'
 import fs from 'fs'
 import tw from 'tailwind-styled-components'
@@ -6,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import styles from '@/styles/md.module.css'
+import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
 
 export const getStaticPaths = async () => {
   console.log('Start getStaticPaths.')
@@ -72,6 +74,10 @@ const BlogPage = ({ data, content }: BlogPageProps) => {
       </Container>
     </>
   )
+}
+
+BlogPage.getLayout = function getLayout(page: ReactElement) {
+  return <OtherHomeLayout>{page}</OtherHomeLayout>
 }
 
 const Container = tw.div`

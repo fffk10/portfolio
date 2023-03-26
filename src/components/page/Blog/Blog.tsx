@@ -31,7 +31,7 @@ const Blog = () => {
 // TODO 削除
 const dummyBlogList: Blog[] = [
   {
-    title: "1first post",
+    title: "first-post",
     views: 1000,
     content: `first post blog.
     second line.
