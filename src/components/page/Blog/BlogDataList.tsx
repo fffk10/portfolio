@@ -4,9 +4,11 @@ import ReactPaginate from 'react-paginate'
 import Link from 'next/link'
 import tw from 'tailwind-styled-components'
 
+import { BlogArticle } from './Blog'
+
 
 type BlogDataListProps = {
-  dataList: any[]
+  dataList: BlogArticle[]
 }
 
 /** ====== Pager setting constants ====== */
@@ -39,7 +41,7 @@ const BlogDataList = ({ dataList }: BlogDataListProps) => {
             <div key={data.title}>
               <Link href={`blog/${data.title.replaceAll(" ", "")}`}> {/** TODO もう少し上手くやる必要あるけど暫定対処 */}
                 <Title>{data.title}</Title>
-                <Views>{data.views.toLocaleString()} views</Views>
+                <Views>{data.date}</Views>
               </Link>
             </div>
           )

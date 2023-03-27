@@ -2,16 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs'
 
-
-
-
-// TODO commonのファイルを参照する
-const navMenu: string[] = [
-  'Portfolio',
-  'Blog',
-  'Contact',
-]
-
 const OtherHomeHeader = () => {
   return (
     <header className="bg-white">

@@ -1,46 +1,26 @@
-import fs from 'fs'
-
 import React, { useState } from 'react'
 
-import matter from 'gray-matter'
 import tw from "tailwind-styled-components"
 
 import BlogDataList from './BlogDataList'
 
-type Blog = {
+export type BlogArticle = {
   title: string,
-  views: number,
+  date: string,
   content: string
 }
 
-export const getStaticProps = (context: any) => {
-  console.log("Start getStaticProps.")
-
-  const id = context.params.id
-  const targetBlogName = fs.readdirSync('posts').find(post => post.match(`${id}.md`))
-  console.log('targetBlogName:', targetBlogName)
-
-  const targetBlog = fs.readFileSync(`posts/${targetBlogName}`, 'utf-8')
-  const { data, content } = matter(targetBlog)
-
-  console.log("content=" + content)
-
-  return {
-    props: {
-      data: data,
-      content: content
-    }
-  }
+type BlogProps = {
+  articleList: BlogArticle[]
 }
 
-
-const Blog = () => {
-  const [blogList, setBlogList] = useState(dummyBlogList)  // TODO 動的にデータをとるように
+const Blog = ({ articleList }: BlogProps) => {
+  const [viewArticleList, setViewArticleList] = useState(articleList)
 
   return (
     <>
       <Container>
-        <BlogDataList dataList={blogList} />
+        <BlogDataList dataList={viewArticleList} />
       </Container>
     </>
   )
@@ -58,10 +38,10 @@ const Container = tw.div`
 
 
 // TODO 削除
-const dummyBlogList: Blog[] = [
+const dummyBlogList: BlogArticle[] = [
   {
     title: "first-post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -70,7 +50,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "2回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -79,7 +59,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "3long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -88,7 +68,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "4fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.
@@ -97,7 +77,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "5first post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -106,7 +86,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "62回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -115,7 +95,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "7long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -124,7 +104,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "8fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.
@@ -133,7 +113,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "9first post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -142,7 +122,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "10 2回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -151,7 +131,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "11long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -160,7 +140,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "12fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.
@@ -169,7 +149,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "13first post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -178,7 +158,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "14 2回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -187,7 +167,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "15 long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -196,7 +176,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "16 fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.
@@ -205,7 +185,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "17 first post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -214,7 +194,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "18 2回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -223,7 +203,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "19 long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -232,7 +212,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "20 fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.
@@ -241,7 +221,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "21 first post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -250,7 +230,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "22 2回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -259,7 +239,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "23 long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -268,7 +248,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "24 fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.
@@ -277,7 +257,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "25 first post",
-    views: 1000,
+    date: '2022-07-13',
     content: `first post blog.
     second line.
     hogehoge.
@@ -286,7 +266,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "26 2回目の投稿です",
-    views: 300,
+    date: '2022-07-13',
     content: `second post blog.
     second line.
     hogehoge.
@@ -295,7 +275,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "27 long long blog title aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaああああああああああああああああa",
-    views: 1003,
+    date: '2022-07-13',
     content: `third post blog.
     second line.
     hogehoge.
@@ -304,7 +284,7 @@ const dummyBlogList: Blog[] = [
   },
   {
     title: "28 fours post",
-    views: 1000000000000,
+    date: '2022-07-13',
     content: `fours post blog.
     second line.
     hogehoge.

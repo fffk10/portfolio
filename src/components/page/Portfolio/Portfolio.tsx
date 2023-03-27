@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import tw from 'tailwind-styled-components'
 
 type Site = {
@@ -13,21 +11,26 @@ type Site = {
 
 const Portfolio = () => {
   return (
-    <Container>
-      {portfolioList.map((site: Site) => {
-        return (
-          <Site key={site.pageTitle}>
-            <Link href={site.url}>
-              <Image src={site.imagePath} alt={site.pageTitle} width={50} height={50} className="m-auto" />
-              {site.pageTitle}
-            </Link>
-            <SiteDescription>
-              {site.description}
-            </SiteDescription>
-          </Site>
-        )
-      })}
-    </Container>
+    // <Container>
+    //   {portfolioList.map((site: Site) => {
+    //     return (
+    //       <Site key={site.pageTitle}>
+    //         <Link href={site.url}>
+    //           <Image src={site.imagePath} alt={site.pageTitle} width={50} height={50} className="m-auto" />
+    //           {site.pageTitle}
+    //         </Link>
+    //         <SiteDescription>
+    //           {site.description}
+    //         </SiteDescription>
+    //       </Site>
+    //     )
+    //   })}
+    // </Container>
+
+    // TODO ポートフォリオがない
+    <NoContentContainer>
+      <NoContent>Coming soon...</NoContent>
+    </NoContentContainer>
   )
 }
 
@@ -48,6 +51,17 @@ const SiteDescription = tw.p`
   text-sm
   text-gray-400
   whitespace-pre-wrap	
+`
+
+const NoContentContainer = tw.div`
+  px-10
+  mt-8
+`
+
+const NoContent = tw.h1`
+  text-4xl
+  w-full
+  text-center
 `
 /** ====== Portfolio styled-components ====== */
 
