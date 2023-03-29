@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
 import Link from 'next/link'
 import tw from 'tailwind-styled-components'
 
-import { BlogArticle } from './Blog'
+import { dateTimeFormat } from '@/utils/dateUtils'
 
+import { BlogArticleList } from './BlogIF'
 
 type BlogDataListProps = {
-  dataList: BlogArticle[]
+  dataList: BlogArticleList
 }
 
 /** ====== Pager setting constants ====== */
@@ -19,38 +20,34 @@ const LAST_DISPLAY_SIZE = 1
 /** 選択位置から表示するページ数 */
 const AROUND_DISPLAY_PAGES = 4
 
-const BlogDataList = ({ dataList }: BlogDataListProps) => {
+const BlogDataList = (props: BlogDataListProps) => {
+  const { dataList } = props
   const [currentPager, setCurrentPager] = useState(1)
-
-  /** ページ数の計算 */
-  const calculatePageCount = () => {
-    return Math.ceil(dataList.length / CONTENT_LENGTH_ONE_PAGE)
-  }
 
   /** ページネーション */
   const handlePaginate = (selectedItem: { selected: number }) => {
     setCurrentPager(selectedItem.selected + 1) // クリックしたページの数-1がselectedに入っている
   }
-
   return (
     <>
       {/** DataList */}
       <ListContainer className='grid gap-4'>
-        {dataList.slice((currentPager - 1) * CONTENT_LENGTH_ONE_PAGE, currentPager * CONTENT_LENGTH_ONE_PAGE).map((data: any) => {
+        {dataList.contents.slice((currentPager - 1) * CONTENT_LENGTH_ONE_PAGE, currentPager * CONTENT_LENGTH_ONE_PAGE).map((data: any) => {
           return (
-            <div key={data.title}>
-              <Link href={`blog/${data.title.replaceAll(" ", "")}`}> {/** TODO もう少し上手くやる必要あるけど暫定対処 */}
+            <div key={data.id}>
+              <Link href={`blog/${data.id}`}>
                 <Title>{data.title}</Title>
-                <Views>{data.date}</Views>
+                <PublishedAt>{dateTimeFormat(data.publishedAt)}</PublishedAt>
               </Link>
             </div>
           )
-        })}
+        })
+        }
       </ListContainer>
 
       {/** Pager */}
       <ReactPaginate
-        pageCount={calculatePageCount()}
+        pageCount={Math.ceil(dataList.totalCount / CONTENT_LENGTH_ONE_PAGE)}
         marginPagesDisplayed={LAST_DISPLAY_SIZE}
         pageRangeDisplayed={AROUND_DISPLAY_PAGES}
         onPageChange={handlePaginate}
@@ -78,7 +75,7 @@ const Title = tw.h2`
   max-w-lg
 `
 
-const Views = tw.span`
+const PublishedAt = tw.span`
   text-sm
   text-gray-600
 `

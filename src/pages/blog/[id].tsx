@@ -1,16 +1,18 @@
-import fs from 'fs'
 
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 
-import matter from 'gray-matter'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import remarkGfm from 'remark-gfm'
 import tw from 'tailwind-styled-components'
 
 import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
+import { BlogArticle } from '@/components/page/Blog/BlogIF'
 
 import styles from '@/styles/md.module.css'
+import { dateTimeFormat } from '@/utils/dateUtils'
+import { client } from 'libs/client'
 
 type BlogPageProps = {
   data: MarkdownMetaData
@@ -23,7 +25,42 @@ type MarkdownMetaData = {
   description: string
 }
 
-const BlogPage = ({ data, content }: BlogPageProps) => {
+const EMPTY_ARTICLE: BlogArticle = {
+  id: '',
+  createdAt: '',
+  updatedAt: '',
+  publishedAt: '',
+  revisedAt: '',
+  title: '',
+  content: '',
+  eyecatch: {
+    url: '',
+    height: 0,
+    width: 0
+  },
+  category: {
+    id: '',
+    createdAt: '',
+    updatedAt: '',
+    publishedAt: '',
+    revisedAt: '',
+    name: ''
+  }
+}
+
+const BlogPage = () => {
+  const router = useRouter()
+  const { id } = router.query  // blog article id
+  const [article, setArticle] = useState(EMPTY_ARTICLE)
+
+  /**
+ * 初回レンダーでブログの記事データを取得
+ */
+  useEffect(() => {
+    (async () => {
+      setArticle(await client.get({ endpoint: `blogs/${id}` }))
+    })()
+  }, [])
 
   return (
     <>
@@ -34,11 +71,11 @@ const BlogPage = ({ data, content }: BlogPageProps) => {
 
       <Container>
         {/** データ部 */}
-        <Title>{data.title}</Title>
-        <Date>{data.date}</Date>
+        <Title>{article.title}</Title>
+        <Date>{dateTimeFormat(article.publishedAt)}</Date>
 
         {/** 本文 */}
-        <ReactMarkdown className={styles.markdown} remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+        <ReactMarkdown className={styles.markdown} remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>
       </Container>
     </>
   )
@@ -46,41 +83,6 @@ const BlogPage = ({ data, content }: BlogPageProps) => {
 
 BlogPage.getLayout = function getLayout(page: ReactElement) {
   return <OtherHomeLayout>{page}</OtherHomeLayout>
-}
-
-export const getStaticPaths = async () => {
-  console.log('Start getStaticPaths.')
-  const posts = fs.readdirSync('posts')
-
-  const paths = posts.map(post => {
-    const path = post.replaceAll(".md", "")
-    return { params: { id: path } }
-  })
-
-  return {
-    paths: paths,
-    fallback: false
-  }
-}
-
-export const getStaticProps = (context: any) => {
-  console.log("Start getStaticProps.")
-
-  const id = context.params.id
-  const targetBlogName = fs.readdirSync('posts').find(post => post.match(`${id}.md`))
-  console.log('targetBlogName:', targetBlogName)
-
-  const targetBlog = fs.readFileSync(`posts/${targetBlogName}`, 'utf-8')
-  const { data, content } = matter(targetBlog)
-
-  console.log("content=" + content)
-
-  return {
-    props: {
-      data: data,
-      content: content
-    }
-  }
 }
 
 const Container = tw.div`
