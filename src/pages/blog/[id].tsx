@@ -1,29 +1,18 @@
-
 import { ReactElement, useEffect, useState } from 'react'
-import ReactMarkdown from 'react-markdown'
 
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import remarkGfm from 'remark-gfm'
 import tw from 'tailwind-styled-components'
 
 import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
 import { BlogArticle } from '@/components/page/Blog/BlogIF'
 
-import styles from '@/styles/md.module.css'
 import { dateTimeFormat } from '@/utils/dateUtils'
 import { client } from 'libs/client'
-
-type BlogPageProps = {
-  data: MarkdownMetaData
-  content: string
-}
-
-type MarkdownMetaData = {
-  title: string,
-  date: string,
-  description: string
-}
+import ErrorModal from '@/components/utils/ErrorModal'
+import { ErrorDetail } from '@/types/Error'
+import { BackButton } from '@/components/utils/BackButton'
+import styles from '@/styles/blog.module.scss'
 
 const EMPTY_ARTICLE: BlogArticle = {
   id: '',
@@ -53,14 +42,27 @@ const BlogPage = () => {
   const { id } = router.query  // blog article id
   const [article, setArticle] = useState(EMPTY_ARTICLE)
 
+  /** エラーモーダル表示情報 */
+  const [error, setError] = useState<ErrorDetail>({
+    type: '',
+    message: ''
+  })
+
   /**
- * 初回レンダーでブログの記事データを取得
- */
+   * ブログの記事データを取得
+   */
   useEffect(() => {
-    (async () => {
-      setArticle(await client.get({ endpoint: `blogs/${id}` }))
+    id && (async () => {
+      try {
+        setArticle(await client.get({ endpoint: `blogs/${id}` }))
+      } catch (e: any) {
+        setError({
+          type: 'データ取得失敗',
+          message: 'ブログの記事取得に失敗しました'
+        })
+      }
     })()
-  }, [])
+  }, [id])
 
   return (
     <>
@@ -75,8 +77,19 @@ const BlogPage = () => {
         <Date>{dateTimeFormat(article.publishedAt)}</Date>
 
         {/** 本文 */}
-        <ReactMarkdown className={styles.markdown} remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `${article.content}`,
+          }}
+          className={styles.content}
+        />
+
+        {/** homeに戻る */}
+        <div className='mt-12'>
+          <BackButton />
+        </div>
       </Container>
+      {error.type && <ErrorModal error={error} />}
     </>
   )
 }
@@ -94,7 +107,7 @@ const Container = tw.div`
 `
 
 const Title = tw.h1`
-  text-3xl
+  text-2xl
   font-serif
   font-bold
   text-center
