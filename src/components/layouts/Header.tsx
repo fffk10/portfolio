@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/24/outline'
 import Image from 'next/image';
 import Link from 'next/link';
-import { BsInstagram, BsTwitter, BsYoutube, BsGithub } from 'react-icons/bs'
+import { BsTwitter, BsGithub } from 'react-icons/bs'
 
 
 // TODO commonのファイルを参照する
@@ -95,18 +95,6 @@ const Header = () => {
               {/** sns link */}
               <div className="py-6 flex justify-end">
                 <Link
-                  href='https://www.instagram.com/fffk10/'
-                  className="block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  <BsInstagram />
-                </Link >
-                <Link
-                  href='https://www.youtube.com/channel/UCfEQEjaDTiCeQoWUKjmBmcA'
-                  className="block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  <BsYoutube />
-                </Link >
-                <Link
                   href='https://twitter.com/w_q_r_q'
                   className="block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
@@ -118,7 +106,6 @@ const Header = () => {
                 >
                   <BsGithub />
                 </Link >
-
               </div>
             </div>
           </div>
