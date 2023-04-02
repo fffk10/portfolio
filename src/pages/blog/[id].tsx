@@ -6,13 +6,15 @@ import tw from 'tailwind-styled-components'
 
 import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
 import { BlogArticle } from '@/components/page/Blog/BlogIF'
+import { BackButton } from '@/components/utils/BackButton'
+import ErrorModal from '@/components/utils/ErrorModal'
 
+import styles from '@/styles/blog.module.scss'
+import { ErrorDetail } from '@/types/Error'
 import { dateTimeFormat } from '@/utils/dateUtils'
 import { client } from 'libs/client'
-import ErrorModal from '@/components/utils/ErrorModal'
-import { ErrorDetail } from '@/types/Error'
-import { BackButton } from '@/components/utils/BackButton'
-import styles from '@/styles/blog.module.scss'
+
+
 
 const EMPTY_ARTICLE: BlogArticle = {
   id: '',

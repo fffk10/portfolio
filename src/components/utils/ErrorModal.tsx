@@ -1,6 +1,8 @@
-import { ErrorDetail } from "@/types/Error"
-import { Dialog, Transition } from "@headlessui/react"
 import { Fragment, useState } from "react"
+
+import { Dialog, Transition } from "@headlessui/react"
+
+import { ErrorDetail } from "@/types/Error"
 
 type Props = {
   error: ErrorDetail
