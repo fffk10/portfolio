@@ -30,4 +30,4 @@ const OtherHomeHeader = () => {
   )
 }
 
-export default OtherHomeHeader;
+export default OtherHomeHeader

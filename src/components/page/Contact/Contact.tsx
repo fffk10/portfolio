@@ -17,9 +17,9 @@ const Contact = () => {
   }
 
   const handleSubmit = async (event: SyntheticEvent) => {
-    send()
     event.preventDefault()
-    console.log("send")
+
+    send()
   }
 
   return (
@@ -54,9 +54,9 @@ const Contact = () => {
             onChange={handleOnChange} />
         </div>
         <div className="flex items-center justify-end">
-          <SendButton type="submit">
+          <button type="submit" className="sendBtn">
             送信
-          </SendButton>
+          </button>
         </div>
       </Form>
     </Container>
@@ -72,8 +72,6 @@ const Container = tw.div`
 `
 
 const Form = tw.form`
-  bg-white
-  shadow-md
   rounded
   px-8
   pt-6
@@ -81,21 +79,10 @@ const Form = tw.form`
   mb-4
 `
 
-const SendButton = tw.button`
-  bg-blue-500
-  hover:bg-blue-700
-  text-white
-  font-bold
-  py-2 px-4 
-  rounded
-  focus:outline-none
-  focus:shadow-outline"
-`
-
 const FormInput = tw.input`
   shadow 
   appearance-none 
-  border 
+  border
   rounded 
   w-full 
   py-2 

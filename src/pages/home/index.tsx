@@ -4,6 +4,7 @@ import { ReactElement } from 'react'
 import Head from 'next/head'
 
 import HomeLayout from '@/components/layouts/HomeLayout'
+import About from '@/components/page/About/About'
 import Blog from '@/components/page/Blog/Blog'
 import Contact from '@/components/page/Contact/Contact'
 import Portfolio from '@/components/page/Portfolio/Portfolio'
@@ -16,6 +17,7 @@ const Home = () => {
         <title>Portfolio</title>
       </Head>
 
+      <Section title='About'><About /></Section>
       <Section title='Portfolio'><Portfolio /></Section>
       <Section title='Blog'><Blog /></Section>
       <Section title='Contact'><Contact /></Section>

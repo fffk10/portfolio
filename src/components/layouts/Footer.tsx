@@ -6,7 +6,7 @@ import { BsTwitter, BsGithub } from 'react-icons/bs'
 const Footer = () => {
 
   return (
-    <footer className="absolute bottom-0 p-4 w-full text-center text-gray-500 bg-slate-800">
+    <footer className="absolute bottom-0 p-4 w-full text-center">
       <div className='flex justify-center'>
         <Link
           href='https://twitter.com/w_q_r_q'
