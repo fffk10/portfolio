@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import tw from 'tailwind-styled-components'
 
+import Layout from '@/components/layouts/Layout'
+import Section from '@/components/ui/Section'
+
 const AboutMe = () => {
+
   return (
     <div>
       <p>
@@ -25,14 +29,15 @@ const AboutMe = () => {
 
 const About = () => {
   return (
-    <Container>
-      <AboutMe />
-    </Container>
+    <Section title='About'>
+      <Container>
+        <AboutMe />
+      </Container>
+    </Section>
   )
 }
 
 /** ====== About styled-components ====== */
-
 const Container = tw.div`
     w-full
     max-w-lg
@@ -40,5 +45,9 @@ const Container = tw.div`
     m-auto
 `
 /** ====== About styled-components ====== */
+
+About.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}
 
 export default About

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import tw from 'tailwind-styled-components'
 
-import OtherHomeLayout from '@/components/layouts/OtherHomeLayout'
+import Layout from '@/components/layouts/Layout'
 import { BlogArticle } from '@/components/page/Blog/BlogIF'
 import { BackButton } from '@/components/utils/BackButton'
 import ErrorModal from '@/components/utils/ErrorModal'
@@ -13,7 +13,6 @@ import styles from '@/styles/blog.module.scss'
 import { ErrorDetail } from '@/types/Error'
 import { dateTimeFormat } from '@/utils/dateUtils'
 import { client } from 'libs/client'
-
 
 
 const EMPTY_ARTICLE: BlogArticle = {
@@ -96,10 +95,7 @@ const BlogPage = () => {
   )
 }
 
-BlogPage.getLayout = function getLayout(page: ReactElement) {
-  return <OtherHomeLayout>{page}</OtherHomeLayout>
-}
-
+/** ====== Blog/[id] styled-components ====== */
 const Container = tw.div`
   w-full
   max-w-2xl
@@ -123,5 +119,10 @@ const Date = tw.p`
   mb-4
   border-b-2
 `
+/** ====== Blog/[id] styled-components ====== */
+
+BlogPage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}
 
 export default BlogPage

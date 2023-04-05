@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 
 import tw from "tailwind-styled-components"
 
+import Layout from '@/components/layouts/Layout'
+import BlogDataList from '@/components/page/blog/BlogDataList'
+import { BlogArticleList } from '@/components/page/Blog/BlogIF'
+import Section from '@/components/ui/Section'
+
 import { client } from 'libs/client'
 
-import BlogDataList from './BlogDataList'
-import { BlogArticleList } from './BlogIF'
 
 const EMPTY_ARTICLE_LIST: BlogArticleList = {
   contents: [],
@@ -31,11 +34,12 @@ const Blog = () => {
   }, [])
 
   return (
-    <>
+    <Section title='Blog'>
       <Container>
         <BlogDataList dataList={articleList} />
       </Container>
-    </>
+    </Section>
+
   )
 }
 
@@ -48,5 +52,9 @@ const Container = tw.div`
     m-auto
 `
 /** ====== Blog styled-components ====== */
+
+Blog.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}
 
 export default Blog

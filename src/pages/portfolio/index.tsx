@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import tw from 'tailwind-styled-components'
+
+import Layout from '@/components/layouts/Layout'
+import Section from '@/components/ui/Section'
 
 type Site = {
   imagePath: string,
@@ -28,9 +31,13 @@ const Portfolio = () => {
     // </Container>
 
     // TODO ポートフォリオがない
-    <NoContentContainer>
-      <NoContent>Coming soon...</NoContent>
-    </NoContentContainer>
+    <Section title='Portfolio'>
+      <NoContentContainer>
+        <NoContent>Coming soon...</NoContent>
+      </NoContentContainer>
+    </Section>
+
+
   )
 }
 
@@ -122,5 +129,9 @@ const portfolioList: Site[] = [
     description: 'site'
   },
 ]
+
+Portfolio.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
+}
 
 export default Portfolio
