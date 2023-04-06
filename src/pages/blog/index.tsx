@@ -3,8 +3,8 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 
 import Layout from '@/components/layouts/Layout'
-import BlogDataList from '@/components/page/Blog/BlogDataList'
-import { BlogArticleList } from '@/components/page/Blog/BlogIF'
+import BlogDataList from '@/components/page/blog/BlogDataList'
+import { BlogArticleList } from '@/components/page/blog/BlogIF'
 import Section from '@/components/ui/Section'
 
 import { client } from 'libs/client'

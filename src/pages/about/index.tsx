@@ -9,21 +9,15 @@ const AboutMe = () => {
 
   return (
     <div>
-      <p>
-        こんにちは、「わら」と申します！<br />
-        普段は一般企業で主にソフトウェアエンジニアとして働いています。<br />
-        <br />
-      </p>
+      <p>こんにちは、「わら」です</p>
 
-      <h2>最近ハマっている言語・フレームワーク</h2>
-      <ol>
-        <li>Typescript</li>
-        <li>Solidity</li>
-        <li>Kotlin</li>
-        <li>React/Next.js</li>
-      </ol>
+      <br />
+      <br />
+
+      <p>一般企業でエンジニアとして働いています。</p>
+      <p>最近は、React/Next.js/solidityあたりにハマっています。</p>
+      <p>Kotlinも好きです。</p>
     </div>
-
   )
 }
 
