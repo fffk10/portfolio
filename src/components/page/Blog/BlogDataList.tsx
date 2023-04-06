@@ -69,7 +69,6 @@ const ListContainer = tw.div`
   grid 
   gap-4
 `
-
 const Title = tw.h2`
   break-all
   max-w-lg
