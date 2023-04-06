@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import tw from 'tailwind-styled-components'
 
 import Layout from '@/components/layouts/Layout'
-import BlogArticle from '@/components/page/blog/BlogIF'
+import { BlogArticle } from '@/components/page/blog/BlogIF'
 import { BackButton } from '@/components/utils/BackButton'
 import ErrorModal from '@/components/utils/ErrorModal'
 
