@@ -1,14 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
+import Head from 'next/head'
 import tw from "tailwind-styled-components"
 
 import Layout from '@/components/layouts/Layout'
-import BlogDataList from '@/components/page/Blog/BlogDataList'
-import { BlogArticleList } from '@/components/page/Blog/BlogIF'
+import BlogDataList from '@/components/page/blog/BlogDataList'
+import { BlogArticleList } from '@/components/page/blog/BlogIF'
 import Section from '@/components/ui/Section'
 
 import { client } from 'libs/client'
-
 
 const EMPTY_ARTICLE_LIST: BlogArticleList = {
   contents: [],
@@ -34,12 +34,19 @@ const Blog = () => {
   }, [])
 
   return (
-    <Section title='Blog'>
-      <Container>
-        <BlogDataList dataList={articleList} />
-      </Container>
-    </Section>
+    <>
+      <Head>
+        <title>Blog</title>
+        <meta name='description' content="Blog page" />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
 
+      <Section title='Blog'>
+        <Container>
+          <BlogDataList dataList={articleList} />
+        </Container>
+      </Section>
+    </>
   )
 }
 

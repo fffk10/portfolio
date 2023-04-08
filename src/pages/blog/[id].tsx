@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import tw from 'tailwind-styled-components'
 
 import Layout from '@/components/layouts/Layout'
-import { BlogArticle } from '@/components/page/Blog/BlogIF'
+import { BlogArticle } from '@/components/page/blog/BlogIF'
 import { BackButton } from '@/components/utils/BackButton'
 import ErrorModal from '@/components/utils/ErrorModal'
 
@@ -68,7 +68,7 @@ const BlogPage = () => {
   return (
     <>
       <Head>
-        <title>Blog</title>
+        <title>{article.title}</title>
         <meta name='description' content="wara's portfolio page created by nextjs" />
       </Head>
 

@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 
+import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
 import Layout from '@/components/layouts/Layout'
@@ -31,13 +32,20 @@ const Portfolio = () => {
     // </Container>
 
     // TODO ポートフォリオがない
-    <Section title='Portfolio'>
-      <NoContentContainer>
-        <NoContent>Coming soon...</NoContent>
-      </NoContentContainer>
-    </Section>
+    <>
+      <Head>
+        <title>Portfolio</title>
+        <meta name='description' content="portfolio page" />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
 
-
+      <Section title='Portfolio'>
+        <NoContentContainer>
+          <NoContent>Coming soon...</NoContent>
+        </NoContentContainer>
+      </Section>
+    </>
   )
 }
 

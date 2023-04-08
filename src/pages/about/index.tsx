@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 
+import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
 import Layout from '@/components/layouts/Layout'
@@ -23,11 +24,20 @@ const AboutMe = () => {
 
 const About = () => {
   return (
-    <Section title='About'>
-      <Container>
-        <AboutMe />
-      </Container>
-    </Section>
+    <>
+      <Head>
+        <title>About</title>
+        <meta name='description' content="About me page" />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+
+      <Section title='About'>
+        <Container>
+          <AboutMe />
+        </Container>
+      </Section>
+    </>
+
   )
 }
 
