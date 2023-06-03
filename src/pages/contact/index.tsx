@@ -1,23 +1,37 @@
-import { ReactElement, SyntheticEvent, useRef, useState } from "react"
+import { ReactElement, SyntheticEvent, useRef, useState } from 'react'
 
 import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
-import Layout from "@/components/layouts/Layout"
-import Section from "@/components/ui/Section"
-import Spinner from "@/components/utils/Spinner"
+import Layout from '@/components/layouts/Layout'
+import Section from '@/components/ui/Section'
+import CommonModal from '@/components/utils/CommonModal'
+import ErrorModal from '@/components/utils/ErrorModal'
+import Spinner from '@/components/utils/Spinner'
 
-import { FormData, useMail } from "@/hooks/useMail"
+import { FormData, useMail } from '@/hooks/useMail'
+
+/** 入力内容初期値 */
+const EMPTY_FORM_DATA: FormData = {
+  name: '',
+  email: '',
+  subject: '',
+  content: '',
+}
 
 /** Contact form page */
 const Contact = () => {
-  const { setFormData, send } = useMail()
+  const [formData, setFormData] = useState<FormData>(EMPTY_FORM_DATA)
+  const { send } = useMail()
   const [errors, setErrors] = useState({
     name: '',
     email: '',
     subject: '',
     content: '',
   })
+
+  const [openCommonModal, setOpenCommonModal] = useState<boolean>(false)
+  const [openErrorModal, setOpenErrorModal] = useState<boolean>(false)
 
   const isEdit = useRef(false)
 
@@ -28,7 +42,7 @@ const Contact = () => {
 
   /**
    * 入力時のハンドラ
-   * @param event 
+   * @param event
    */
   const handleOnChange = (event: any) => {
     isEdit.current = true
@@ -41,7 +55,6 @@ const Contact = () => {
       updateFormData = { ...p, ...change }
       return updateFormData
     })
-    setErrors(() => validate(updateFormData))
   }
 
   const validate = (formData: FormData): FormData => {
@@ -53,16 +66,16 @@ const Contact = () => {
     }
 
     if (formData.name.length === 0) {
-      errors.name = "名前は必須項目です"
+      errors.name = '名前は必須項目です'
     }
     if (formData.email.length === 0) {
-      errors.email = "メールアドレスは必須項目です"
+      errors.email = 'メールアドレスは必須項目です'
     }
     if (formData.subject.length === 0) {
-      errors.subject = "件名は必須項目です"
+      errors.subject = '件名は必須項目です'
     }
     if (formData.content.length === 0) {
-      errors.content = "本文は必須項目です"
+      errors.content = '本文は必須項目です'
     }
     return errors
   }
@@ -70,9 +83,9 @@ const Contact = () => {
   /**
    * 送信ボタン押下時のハンドラ
    * バリデートに失敗したら送信しない
-   * 
-   * @param event 
-   * @returns 
+   *
+   * @param event
+   * @returns
    */
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
@@ -80,13 +93,23 @@ const Contact = () => {
     if (isLoading.current) return
     isLoading.current = true
 
+    setErrors(() => validate(formData))
+
     // validate
-    if (!isValid()) return
+    if (!isValid()) {
+      isLoading.current = false
+      return
+    }
 
     setIsSpinner(true)
 
     // 送信処理
-    await send()
+    try {
+      await send(formData)
+      setOpenCommonModal(true)
+    } catch (err) {
+      setOpenErrorModal(true)
+    }
 
     setIsSpinner(false)
 
@@ -95,7 +118,7 @@ const Contact = () => {
 
   /**
    * 必須項目が入力されているか
-   * @returns 
+   * @returns
    */
   const isValid = () => {
     return (
@@ -111,45 +134,78 @@ const Contact = () => {
     <>
       <Head>
         <title>Contact</title>
-        <meta name='description' content="contact form page" />
+        <meta name='description' content='contact form page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <Section title='Contact'>
         <Container>
           <Form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <FormLabel htmlFor="name">氏名</FormLabel>
+            <div className='mb-4'>
+              <FormLabel htmlFor='name'>氏名</FormLabel>
               {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
-              <FormInput id="name" name="name" type="text" placeholder="氏名"
-                onChange={handleOnChange} />
+              <FormInput
+                id='name'
+                name='name'
+                type='text'
+                placeholder='氏名'
+                onChange={handleOnChange}
+              />
             </div>
-            <div className="mb-4">
-              <FormLabel htmlFor="email">メールアドレス</FormLabel>
+            <div className='mb-4'>
+              <FormLabel htmlFor='email'>メールアドレス</FormLabel>
               {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
-              <FormInput id="email" name="email" type="email" placeholder="******@example.com"
-                onChange={handleOnChange} />
+              <FormInput
+                id='email'
+                name='email'
+                type='email'
+                placeholder='******@example.com'
+                onChange={handleOnChange}
+              />
             </div>
-            <div className="mb-4">
-              <FormLabel htmlFor="subject">件名</FormLabel>
+            <div className='mb-4'>
+              <FormLabel htmlFor='subject'>件名</FormLabel>
               {errors.subject && <ErrorMessage>{errors.subject}</ErrorMessage>}
-              <FormInput id="subject" name="subject" type="text" placeholder="件名"
-                onChange={handleOnChange} />
+              <FormInput
+                id='subject'
+                name='subject'
+                type='text'
+                placeholder='件名'
+                onChange={handleOnChange}
+              />
             </div>
-            <div className="mb-6">
-              <FormLabel htmlFor="email">お問い合わせ内容</FormLabel>
+            <div className='mb-6'>
+              <FormLabel htmlFor='email'>お問い合わせ内容</FormLabel>
               {errors.content && <ErrorMessage>{errors.content}</ErrorMessage>}
-              <FormTextArea id="email" name="content" placeholder="お問い合わせ内容" rows={10}
-                onChange={handleOnChange} />
+              <FormTextArea
+                id='email'
+                name='content'
+                placeholder='お問い合わせ内容'
+                rows={10}
+                onChange={handleOnChange}
+              />
             </div>
-            <div className="flex items-center justify-end">
-              <button type="submit" className="sendBtn">
+            <div className='flex items-center justify-end'>
+              <button type='submit' className='sendBtn'>
                 送信
               </button>
             </div>
           </Form>
         </Container>
         {isSpinner && <Spinner />}
+        <CommonModal
+          open={openCommonModal}
+          closeModal={() => setOpenCommonModal(false)}
+          text='正常にメールが送信されました'
+        />
+        <ErrorModal
+          open={openErrorModal}
+          closeModal={() => setOpenErrorModal(false)}
+          error={{
+            type: '予期せぬエラー',
+            message: 'メール送信の送信に失敗しました',
+          }}
+        />
       </Section>
     </>
   )

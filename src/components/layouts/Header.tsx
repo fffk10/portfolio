@@ -109,13 +109,13 @@ const Header = () => {
               <div className='py-6 flex justify-end'>
                 <Link
                   href='https://twitter.com/w_q_r_q'
-                  className='block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-gray-50'
+                  className='block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 '
                 >
                   <BsTwitter />
                 </Link>
                 <Link
                   href='https://github.com/fffk10'
-                  className='block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 hover:bg-gray-50'
+                  className='block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 '
                 >
                   <BsGithub />
                 </Link>

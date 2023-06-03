@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 export type FormData = {
   name: string
   email: string
@@ -7,26 +5,26 @@ export type FormData = {
   content: string
 }
 
-const EMPTY_FORM_DATA: FormData = {
-  name: '',
-  email: '',
-  subject: '',
-  content: '',
-}
-
 /** Custom hook for send mail. */
 export const useMail = () => {
-  const [formData, setFormData] = useState<FormData>(EMPTY_FORM_DATA)
+  const send = async (formData: FormData) => {
+    if (!formData) return
 
-  const send = async () => {
-    await fetch('/api/mail', {
+    return await fetch('/api/mail', {
       method: 'POST',
       body: JSON.stringify(formData),
     })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`${res.status} ${res.statusText}`)
+        }
+      })
+      .catch((err) => {
+        throw err
+      })
   }
 
   return {
-    setFormData,
     send,
   }
 }
