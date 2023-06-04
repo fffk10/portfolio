@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
 
-import { ErrorDetail } from '@/types/Error'
+import { ErrorDetail } from '@/types/error'
 
 type Props = {
   open: boolean

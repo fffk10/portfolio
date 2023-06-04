@@ -3,11 +3,10 @@ import React, { ReactElement } from 'react'
 import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
-import Layout from '@/components/layouts/Layout'
-import Section from '@/components/ui/Section'
+import Layout from '@/components/layouts/layout'
+import Section from '@/components/ui/section'
 
 const AboutMe = () => {
-
   return (
     <div>
       <p>こんにちは、「わら」です</p>
@@ -27,7 +26,7 @@ const About = () => {
     <>
       <Head>
         <title>About</title>
-        <meta name='description' content="About me page" />
+        <meta name='description' content='About me page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -37,7 +36,6 @@ const About = () => {
         </Container>
       </Section>
     </>
-
   )
 }
 
