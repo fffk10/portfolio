@@ -4,8 +4,8 @@ import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
 import Layout from '@/components/layouts/layout'
-import BlogDataList from '@/components/page/Blog/blogDataList'
-import { BlogArticleList } from '@/components/page/Blog/blogIF'
+import BlogDataList from '@/components/page/blog/blogDataList'
+import { BlogArticleList } from '@/components/page/blog/blogIF'
 import Section from '@/components/ui/section'
 
 import { client } from 'libs/client'
