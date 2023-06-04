@@ -10,10 +10,8 @@ import { BackButton } from '@/components/utils/BackButton'
 import ErrorModal from '@/components/utils/ErrorModal'
 
 import styles from '@/styles/blog.module.scss'
-import { ErrorDetail } from '@/types/Error'
 import { dateTimeFormat } from '@/utils/dateUtils'
 import { client } from 'libs/client'
-
 
 const EMPTY_ARTICLE: BlogArticle = {
   id: '',
@@ -26,7 +24,7 @@ const EMPTY_ARTICLE: BlogArticle = {
   eyecatch: {
     url: '',
     height: 0,
-    width: 0
+    width: 0,
   },
   category: {
     id: '',
@@ -34,42 +32,40 @@ const EMPTY_ARTICLE: BlogArticle = {
     updatedAt: '',
     publishedAt: '',
     revisedAt: '',
-    name: ''
-  }
+    name: '',
+  },
 }
 
 const BlogPage = () => {
   const router = useRouter()
-  const { id } = router.query  // blog article id
+  const { id } = router.query // blog article id
   const [article, setArticle] = useState(EMPTY_ARTICLE)
 
-  /** エラーモーダル表示情報 */
-  const [error, setError] = useState<ErrorDetail>({
-    type: '',
-    message: ''
-  })
+  /** エラーモーダル */
+  const [openErrorModal, setOpenErrorModal] = useState<boolean>(false)
 
   /**
    * ブログの記事データを取得
    */
   useEffect(() => {
-    id && (async () => {
-      try {
-        setArticle(await client.get({ endpoint: `blogs/${id}` }))
-      } catch (e: any) {
-        setError({
-          type: 'データ取得失敗',
-          message: 'ブログの記事取得に失敗しました'
-        })
-      }
-    })()
+    id &&
+      (async () => {
+        try {
+          setArticle(await client.get({ endpoint: `blogs/${id}` }))
+        } catch (e: any) {
+          setOpenErrorModal(true)
+        }
+      })()
   }, [id])
 
   return (
     <>
       <Head>
         <title>{article.title}</title>
-        <meta name='description' content="wara's portfolio page created by nextjs" />
+        <meta
+          name='description'
+          content="wara's portfolio page created by nextjs"
+        />
       </Head>
 
       <Container>
@@ -90,7 +86,14 @@ const BlogPage = () => {
           <BackButton />
         </div>
       </Container>
-      {error.type && <ErrorModal error={error} />}
+      <ErrorModal
+        open={openErrorModal}
+        closeModal={() => setOpenErrorModal(false)}
+        error={{
+          type: '予期せぬエラー',
+          message: '記事の取得に失敗しました',
+        }}
+      />
     </>
   )
 }
