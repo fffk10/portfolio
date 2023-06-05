@@ -108,7 +108,7 @@ const Header = () => {
               {/** sns link */}
               <div className='py-6 flex justify-end'>
                 <Link
-                  href='https://twitter.com/w_q_r_q'
+                  href='https://twitter.com/warafffk10'
                   className='block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 '
                 >
                   <BsTwitter />
