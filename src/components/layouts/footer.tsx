@@ -5,7 +5,10 @@ const Footer = () => {
   return (
     <footer className='absolute bottom-0 p-4 w-full text-center'>
       <div className='flex justify-center'>
-        <Link href='https://twitter.com/w_q_r_q' className='px-6 py-4 text-lg'>
+        <Link
+          href='https://twitter.com/warafffk10'
+          className='px-6 py-4 text-lg'
+        >
           <BsTwitter />
         </Link>
         <Link href='https://github.com/fffk10' className='px-6 py-4 text-lg'>
