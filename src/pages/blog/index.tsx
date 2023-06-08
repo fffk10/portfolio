@@ -1,12 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import Head from 'next/head'
-import tw from "tailwind-styled-components"
+import tw from 'tailwind-styled-components'
 
-import Layout from '@/components/layouts/Layout'
-import BlogDataList from '@/components/page/Blog/BlogDataList'
-import { BlogArticleList } from '@/components/page/Blog/BlogIF'
-import Section from '@/components/ui/Section'
+import Layout from '@/components/layouts/layout'
+import BlogDataList from '@/components/page/blog/blogDataList'
+import { BlogArticleList } from '@/components/page/blog/blogIF'
+import Section from '@/components/ui/section'
 
 import { client } from 'libs/client'
 
@@ -14,7 +14,7 @@ const EMPTY_ARTICLE_LIST: BlogArticleList = {
   contents: [],
   totalCount: 0,
   offset: 0,
-  limit: 0
+  limit: 0,
 }
 
 const Blog = () => {
@@ -37,13 +37,15 @@ const Blog = () => {
     <>
       <Head>
         <title>Blog</title>
-        <meta name='description' content="Blog page" />
+        <meta name='description' content='Blog page' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <Section title='Blog'>
         <Container>
+          {/** 記事一覧 */}
           <BlogDataList dataList={articleList} />
+          {/** カテゴリリスト */}
         </Container>
       </Section>
     </>

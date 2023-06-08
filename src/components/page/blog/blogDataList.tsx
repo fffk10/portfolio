@@ -6,7 +6,7 @@ import tw from 'tailwind-styled-components'
 
 import { dateTimeFormat } from '@/utils/dateUtils'
 
-import { BlogArticleList } from './BlogIF'
+import { BlogArticleList } from './blogIF'
 
 type BlogDataListProps = {
   dataList: BlogArticleList
@@ -32,17 +32,21 @@ const BlogDataList = (props: BlogDataListProps) => {
     <>
       {/** DataList */}
       <ListContainer className='grid gap-4'>
-        {dataList.contents.slice((currentPager - 1) * CONTENT_LENGTH_ONE_PAGE, currentPager * CONTENT_LENGTH_ONE_PAGE).map((data: any) => {
-          return (
-            <div key={data.id}>
-              <Link href={`blog/${data.id}`}>
-                <Title>{data.title}</Title>
-                <PublishedAt>{dateTimeFormat(data.publishedAt)}</PublishedAt>
-              </Link>
-            </div>
+        {dataList.contents
+          .slice(
+            (currentPager - 1) * CONTENT_LENGTH_ONE_PAGE,
+            currentPager * CONTENT_LENGTH_ONE_PAGE
           )
-        })
-        }
+          .map((data: any) => {
+            return (
+              <div key={data.id}>
+                <Link href={`blog/${data.id}`}>
+                  <Title>{data.title}</Title>
+                  <PublishedAt>{dateTimeFormat(data.publishedAt)}</PublishedAt>
+                </Link>
+              </div>
+            )
+          })}
       </ListContainer>
 
       {/** Pager */}
@@ -133,7 +137,7 @@ const pagerStyles = {
     items-center
     p-1
     rounded-md
-  `
+  `,
 }
 
 export default BlogDataList

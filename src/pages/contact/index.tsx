@@ -3,11 +3,11 @@ import { ReactElement, SyntheticEvent, useRef, useState } from 'react'
 import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
-import Layout from '@/components/layouts/Layout'
-import Section from '@/components/ui/Section'
-import CommonModal from '@/components/utils/CommonModal'
-import ErrorModal from '@/components/utils/ErrorModal'
-import Spinner from '@/components/utils/Spinner'
+import Layout from '@/components/layouts/layout'
+import Section from '@/components/ui/section'
+import CommonModal from '@/components/utils/commonModal'
+import ErrorModal from '@/components/utils/errorModal'
+import Spinner from '@/components/utils/spinner'
 
 import { FormData, useMail } from '@/hooks/useMail'
 

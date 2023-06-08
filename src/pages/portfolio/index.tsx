@@ -3,13 +3,13 @@ import React, { ReactElement } from 'react'
 import Head from 'next/head'
 import tw from 'tailwind-styled-components'
 
-import Layout from '@/components/layouts/Layout'
-import Section from '@/components/ui/Section'
+import Layout from '@/components/layouts/layout'
+import Section from '@/components/ui/section'
 
 type Site = {
-  imagePath: string,
-  pageTitle: string,
-  url: string,
+  imagePath: string
+  pageTitle: string
+  url: string
   description: string
 }
 
@@ -35,7 +35,7 @@ const Portfolio = () => {
     <>
       <Head>
         <title>Portfolio</title>
-        <meta name='description' content="portfolio page" />
+        <meta name='description' content='portfolio page' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -86,55 +86,56 @@ const portfolioList: Site[] = [
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-1',
     url: 'demo-site-1',
-    description: "ここがサイトの説明部分です。\nここで改行されます\n数行程度で簡単な説明を記載してください"
+    description:
+      'ここがサイトの説明部分です。\nここで改行されます\n数行程度で簡単な説明を記載してください',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-2',
     url: 'demo-site-2',
-    description: 'second site'
+    description: 'second site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-3',
     url: 'demo-site-3',
-    description: 'third site'
+    description: 'third site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-4',
     url: 'demo-site-5',
-    description: 'site'
+    description: 'site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-6',
     url: 'demo-site-6',
-    description: 'site'
+    description: 'site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-7',
     url: 'demo-site-7',
-    description: 'site'
+    description: 'site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-8',
     url: 'demo-site-8',
-    description: 'site'
+    description: 'site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-9',
     url: 'demo-site-9',
-    description: 'site'
+    description: 'site',
   },
   {
     imagePath: '/portfolio_image/image1.png',
     pageTitle: 'demo-site-10',
     url: 'demo-site-10',
-    description: 'site'
+    description: 'site',
   },
 ]
 

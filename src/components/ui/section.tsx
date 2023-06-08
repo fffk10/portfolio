@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react'
 
-import SectionTitle from './SectionTitle'
+import SectionTitle from './sectionTitle'
 
 type Props = {
-  title: string,
+  title: string
   children: ReactNode
 }
 
