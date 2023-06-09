@@ -39,4 +39,19 @@
       }
     }
   }
+
+  & > pre {
+    width: 100%;
+    border: 1px solid #aeaeae;
+    background-color: #1a202c;
+    border-radius: 3px;
+    padding: 4px 8px;
+
+    & > code {
+      color: white;
+      width: 100%;
+      white-space: pre-wrap;
+      overflow: visible;
+    }
+  }
 }
