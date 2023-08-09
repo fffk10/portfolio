@@ -1,4 +1,4 @@
-import { createTransport } from 'nodemailer';
+import { createTransport } from 'nodemailer'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -6,7 +6,7 @@ type Data = {
   success: boolean
 }
 
-const SUBJECT = "Portfolioサイトからのお問い合わせメール:"
+const SUBJECT = 'Portfolioサイトからのお問い合わせメール'
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function handler(
 ) {
   const { method, body } = req
 
-  if (method !== "POST") {
+  if (method !== 'POST') {
     return res.status(405).json({
       success: false,
     })
@@ -25,7 +25,7 @@ export default async function handler(
       success: false,
     })
   }
-  console.log("body=", body)
+  console.log('body=', body)
   const json = JSON.parse(body)
 
   const transporter = createTransport({
@@ -36,13 +36,13 @@ export default async function handler(
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
     },
-  });
+  })
 
   await transporter.sendMail({
     to: process.env.MAIL_TO,
-    subject: SUBJECT + json.subject,
-    text: json.content,
-  });
+    subject: SUBJECT,
+    text: `氏名：${json.name} 様\n件名：${json.subject}\n本文：${json.content}`,
+  })
 
   res.status(200).json({
     success: true,
